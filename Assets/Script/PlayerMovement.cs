@@ -33,20 +33,23 @@ public class PlayerController : MonoBehaviour
     public void ReadMoveInput(InputAction.CallbackContext context)
     {
         m_MoveVector = context.ReadValue<Vector2>();
+        Debug.Log(m_MoveVector);
     }
 
-    private void Move()
+   private void Move()
+{
+    // Find the direction
+    Vector3 direction = new Vector3(m_MoveVector.x, 0f, m_MoveVector.y).normalized;
+    Debug.Log("Direction :");
+    Debug.Log(direction);
+
+    if (direction.magnitude >= 0.1f)
     {
-        // Find the direction
-        Vector3 direction = new Vector3(m_MoveVector.x, 0f, m_MoveVector.y).normalized;
-
-        if (direction.magnitude >= 0.1f)
-        {
-            // Convert input direction to world space
-            Vector3 moveDirection = Camera.main.transform.TransformDirection(new Vector3(direction.x, 0f, direction.y));
-
-            // Apply movement
-            m_Character.Move(moveDirection * m_Speed * Time.deltaTime);
-        }
+        // Use the world space direction directly
+        Vector3 moveDirection = new Vector3(direction.x, 0f, m_MoveVector.y);
+ 
+        // Apply movement
+        m_Character.Move(moveDirection * m_Speed * Time.deltaTime);
     }
+}
 }
