@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private float m_Speed = 5.0f;
+    [SerializeField] private float m_Speed = 3.0f;
     [SerializeField] private float m_TurnSmoothTime = 0.1f;
 
     private CharacterController m_Character;
