@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float m_Speed = 3.0f;
     [SerializeField] private float m_TurnSmoothTime = 0.1f;
+    private Animator m_Animator;
 
     private CharacterController m_Character;
     private float m_TurnSmoothVelocity;
@@ -17,6 +18,18 @@ public class PlayerController : MonoBehaviour
     {
         m_Character = gameObject.AddComponent<CharacterController>();
         m_Character.radius = 0.4f;
+
+        // Find the character object and get its Animator component
+        Transform childObject = transform.Find("character");
+        if (childObject != null)
+        {
+            m_Animator = childObject.GetComponent<Animator>();
+            Debug.Log("Child found!");
+        }
+        else
+        {
+            Debug.LogError("Child object not found!");
+        }
     }
 
     private void OnDisable()
@@ -33,23 +46,38 @@ public class PlayerController : MonoBehaviour
     public void ReadMoveInput(InputAction.CallbackContext context)
     {
         m_MoveVector = context.ReadValue<Vector2>();
-        Debug.Log(m_MoveVector);
     }
 
    private void Move()
 {
     // Find the direction
     Vector3 direction = new Vector3(m_MoveVector.x, 0f, m_MoveVector.y).normalized;
-    Debug.Log("Direction :");
-    Debug.Log(direction);
 
     if (direction.magnitude >= 0.1f)
     {
-        // Use the world space direction directly
-        Vector3 moveDirection = new Vector3(direction.x, 0f, m_MoveVector.y);
- 
-        // Apply movement
-        m_Character.Move(moveDirection * m_Speed * Time.deltaTime);
+        // Get direction angle from direction vector
+        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+
+        // Ajouter π/2 (90 degrés) à l'angle de rotation
+        targetAngle += 90f;
+
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_TurnSmoothVelocity, m_TurnSmoothTime);
+
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+
+        // Utiliser directement le vecteur de direction normalisé pour le mouvement
+        Vector3 moveDirection = direction;
+
+        // Appliquer le mouvement
+        m_Character.Move(moveDirection.normalized * m_Speed * Time.deltaTime);
+        m_Animator.SetBool("isWalkin", true);
+    }
+    else
+    {
+        // Si le personnage ne bouge pas, définir le paramètre isWalking sur false
+        m_Animator.SetBool("isWalkin", false);
     }
 }
+
+
 }
