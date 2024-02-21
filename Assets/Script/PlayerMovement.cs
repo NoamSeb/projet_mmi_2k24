@@ -13,18 +13,20 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 m_MoveVector;
 
+    private ObjectDisplay m_InteractivObject;
+
     #region Initialization
     private void OnEnable()
     {
         m_Character = gameObject.AddComponent<CharacterController>();
         m_Character.radius = 0.4f;
+        m_Character.detectCollisions = true;
 
         // Find the character object and get its Animator component
         Transform childObject = transform.Find("character");
         if (childObject != null)
         {
             m_Animator = childObject.GetComponent<Animator>();
-            Debug.Log("Child found!");
         }
         else
         {
@@ -79,5 +81,12 @@ public class PlayerController : MonoBehaviour
     }
 }
 
-
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.tag == "interactiv")
+        {
+            Debug.Log("Collision with: " + hit.gameObject.name);
+            //alertDisplay.DisplayAlert("Press F to interact");
+        }
+    }
 }

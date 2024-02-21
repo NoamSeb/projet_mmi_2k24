@@ -3,7 +3,9 @@ guid: 997e639ce86035d49b7de3940837dba5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - interactivObject: {fileID: 1189776644895708084, guid: ebee0eb6b26bce244871314091cbb553, type: 3}
+  - dialogue: {fileID: 4701916887188000227, guid: 8ac445231c6bdc649b1a0cdb851321b4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

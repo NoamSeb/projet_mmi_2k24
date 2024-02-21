@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997e639ce86035d49b7de3940837dba5, type: 3}
+  m_Name: bedInteractiv
+  m_EditorClassIdentifier: 
+  ObjectName: bed
+  interactivObject: {fileID: 839496602199801140, guid: 791e0bfe250203f4db7fe3bbf21ae762, type: 3}
+  dialogue: {fileID: 4701916887188000227, guid: 8ac445231c6bdc649b1a0cdb851321b4, type: 3}

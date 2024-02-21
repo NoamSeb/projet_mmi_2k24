@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997e639ce86035d49b7de3940837dba5, type: 3}
+  m_Name: morsePosterInteractiv
+  m_EditorClassIdentifier: 
+  ObjectName: morse poster
+  interactivObject: {fileID: 1189776644895708084, guid: ebee0eb6b26bce244871314091cbb553, type: 3}
+  dialogue: {fileID: 1735512749117319922, guid: af8c2e961e3cd6449b387e8f37fdf74a, type: 3}

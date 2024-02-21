@@ -15,17 +15,6 @@ public class LevelChanger : MonoBehaviour
         if (transitionAllowed && Input.GetMouseButtonDown(0))
         {
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-            // Check if the next scene is not "GameScene" before triggering the fade
-            if (nextSceneIndex != SceneManager.sceneCountInBuildSettings - 1)
-            {
-                FadeToLevel(nextSceneIndex);
-            }
-            else
-            {
-                // Transition not allowed after reaching "GameScene"
-                Debug.Log("Transition not allowed after reaching GameScene.");
-            }
         }
     }
 
@@ -53,7 +42,7 @@ public class LevelChanger : MonoBehaviour
         // Check if the next scene is not "GameScene" before triggering the fade
         if (nextSceneIndex != SceneManager.sceneCountInBuildSettings - 1)
         {
-          
+          FadeToLevel(nextSceneIndex);
         }
         else
         {

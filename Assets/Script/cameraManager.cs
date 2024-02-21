@@ -13,7 +13,7 @@ public class cameraManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /* Set the salon camera as the default active camera
+        /* Set the room camera as the default active camera
         Because the player is already into the salon area, Unity considere the trigger
         so we begin with roomCamera to initiate properly to salonCamera */
         SetActiveCamera(roomCamera);
