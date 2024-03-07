@@ -4,7 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - interactivObject: {fileID: 1189776644895708084, guid: ebee0eb6b26bce244871314091cbb553, type: 3}
+  - interactivObject: {fileID: 5669082788435608238, guid: 5068f607c4f4d4988892c0288fb89df8, type: 3}
   - dialogue: {fileID: 4701916887188000227, guid: 8ac445231c6bdc649b1a0cdb851321b4, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}

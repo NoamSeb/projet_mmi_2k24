@@ -50,36 +50,36 @@ public class PlayerController : MonoBehaviour
         m_MoveVector = context.ReadValue<Vector2>();
     }
 
-   private void Move()
-{
-    // Find the direction
-    Vector3 direction = new Vector3(m_MoveVector.x, 0f, m_MoveVector.y).normalized;
-
-    if (direction.magnitude >= 0.1f)
+    private void Move()
     {
-        // Get direction angle from direction vector
-        float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+        // Find the direction
+        Vector3 direction = new Vector3(m_MoveVector.x, 0f, m_MoveVector.y).normalized;
 
-        // Ajouter π/2 (90 degrés) à l'angle de rotation
-        targetAngle += 90f;
+        if (direction.magnitude >= 0.1f)
+        {
+            // Get direction angle from direction vector
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
 
-        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_TurnSmoothVelocity, m_TurnSmoothTime);
+            // Add π/2 (90 degrés) to rotation angle
+            targetAngle += 90f;
 
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref m_TurnSmoothVelocity, m_TurnSmoothTime);
 
-        // Utiliser directement le vecteur de direction normalisé pour le mouvement
-        Vector3 moveDirection = direction;
+            transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-        // Appliquer le mouvement
-        m_Character.Move(moveDirection.normalized * m_Speed * Time.deltaTime);
-        m_Animator.SetBool("isWalkin", true);
+            // Use normalized vector to move the character
+            Vector3 moveDirection = direction;
+
+            // Apply the movement
+            m_Character.Move(moveDirection.normalized * m_Speed * Time.deltaTime);
+            m_Animator.SetBool("isWalkin", true);
+        }
+        else
+        {
+            // If the character do'n move, set the isWalkin parameter to false
+            m_Animator.SetBool("isWalkin", false);
+        }
     }
-    else
-    {
-        // Si le personnage ne bouge pas, définir le paramètre isWalking sur false
-        m_Animator.SetBool("isWalkin", false);
-    }
-}
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
