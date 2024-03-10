@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class TimeController : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    private float m_remainingTime = 150f; // 150 seconds == 2.5 minutes
+    [SerializeField] float m_remainingTime;
 
     void Update()
     {
@@ -15,7 +15,9 @@ public class TimeController : MonoBehaviour
         CheckRemainingTime();
     }
 
-    // CoolDown function from 150 in our case to 0
+    /// <summary>
+    /// UpdateTimer function manage a cooldown from given value to 0
+    /// </summary>
     void UpdateTimer()
     {
         if (m_remainingTime > 0)
@@ -37,7 +39,6 @@ public class TimeController : MonoBehaviour
     {
         if (m_remainingTime == 0)
         {
-            // re render the scene if m_remainingTime == 0
             SceneManager.LoadScene("game");
         }
     }

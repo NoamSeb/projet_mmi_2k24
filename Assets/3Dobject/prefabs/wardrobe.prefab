@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5041632659386471290}
+  - component: {fileID: 4836191510880220867}
   m_Layer: 0
   m_Name: wardrobe
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 4468707475842249738}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4836191510880220867
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572812451531423163}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.42, y: 3.38, z: 1.35}
+  m_Center: {x: 0, y: 1.33, z: 1.35}
 --- !u!1 &8144545923526663351
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,8 +114,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.13, y: 5.17, z: 1.96}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.13, y: 5.17, z: 1.69}
+  m_Center: {x: 0, y: 0, z: -0.12}
 --- !u!1001 &4147446613725991905
 PrefabInstance:
   m_ObjectHideFlags: 0

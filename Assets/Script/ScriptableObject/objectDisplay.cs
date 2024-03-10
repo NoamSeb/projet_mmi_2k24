@@ -6,9 +6,10 @@ using DialogueEditor;
 public class ObjectDisplay : MonoBehaviour
 {
     public List<ObjectData> interactiveObject;
+    [SerializeField] GameObject dialog;
 
     void Start()
-    
+
     {
         if (interactiveObject != null && interactiveObject.Count > 0)
         {
@@ -18,13 +19,6 @@ public class ObjectDisplay : MonoBehaviour
                 {
                     GameObject obj = Instantiate(interactivObject.interactivObject);
                     obj.tag = "interactiv";
-
-                    // Add a Collider to the GameObject if not already done
-                    Collider[] colliders = obj.GetComponents<Collider>();
-                    foreach (Collider col in colliders)
-                    {
-                        col.isTrigger = true;
-                    }
                 }
                 else
                 {
@@ -45,7 +39,16 @@ public class ObjectDisplay : MonoBehaviour
         {
             if (objData != null && objData.dialogue != null)
             {
-                ConversationManager.Instance.StartConversation(objData.dialogue);
+
+                Debug.Log("Conversation started");
+                Debug.Log(objData);
+                Debug.Log(objData.dialogue);
+                // ConversationManager.Instance.StartConversation(objData.dialogue);
+
+            }
+            else
+            {
+                Debug.LogWarning("One of the interactiveObjects has a null or missing dialogue. No conversation started.");
             }
         }
     }

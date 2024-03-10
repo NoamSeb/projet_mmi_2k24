@@ -5,17 +5,18 @@ using Cinemachine;
 
 public class cameraManager : MonoBehaviour
 {
-    public CinemachineVirtualCamera salonCamera; // Drag your salon camera here in the Inspector
-    public CinemachineVirtualCamera roomCamera;  // Drag your room camera here in the Inspector
+    [SerializeField] CinemachineVirtualCamera salonCamera;
+    [SerializeField] CinemachineVirtualCamera roomCamera;
 
-    private CinemachineVirtualCamera activeCamera; // To keep track of the currently active camera
+    private CinemachineVirtualCamera activeCamera;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Set the roomCamera as the default active camera
+    /// Because the player is already into the salon area, Unity considere the trigger
+    /// so we begin with roomCamera to initiate properly to salonCamera
+    /// </summary>
     void Start()
     {
-        /* Set the room camera as the default active camera
-        Because the player is already into the salon area, Unity considere the trigger
-        so we begin with roomCamera to initiate properly to salonCamera */
         SetActiveCamera(roomCamera);
     }
 
@@ -23,7 +24,6 @@ public class cameraManager : MonoBehaviour
     {
         if (other.CompareTag("ChangeCameraBox"))
         {
-            // Toggle between the cameras
             ToggleCameras();
         }
     }
@@ -32,14 +32,11 @@ public class cameraManager : MonoBehaviour
     {
         if (activeCamera == salonCamera)
         {
-            // Switch to room camera
             SetActiveCamera(roomCamera);
         }
         else
         {
-            // Switch back to salon camera
             SetActiveCamera(salonCamera);
-
         }
     }
 
@@ -49,7 +46,6 @@ public class cameraManager : MonoBehaviour
         if (activeCamera != null)
         {
             activeCamera.gameObject.SetActive(false);
-
         }
 
         // Enable the new active virtual camera

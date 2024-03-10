@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DialogueEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 m_MoveVector;
 
-    private ObjectDisplay m_InteractivObject;
+    [SerializeField] ObjectDisplay m_InteractivObjects;
 
     #region Initialization
     private void OnEnable()
@@ -76,17 +77,17 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            // If the character do'n move, set the isWalkin parameter to false
+            // If the character don't move, set the isWalkin parameter to false
             m_Animator.SetBool("isWalkin", false);
         }
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerEnter(Collider collider)
     {
-        if (hit.gameObject.tag == "interactiv")
+        if (collider.gameObject.tag == "interactiv")
         {
-            Debug.Log("Collision with: " + hit.gameObject.name);
-            //alertDisplay.DisplayAlert("Press F to interact");
+            // Debug.Log("Collision with: " + collider.gameObject);
+            m_InteractivObjects.TriggerDialog();
         }
     }
 }
