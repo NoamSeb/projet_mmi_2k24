@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class cameraManager : MonoBehaviour
+public class CameraManager : MonoBehaviour
 {
+    [Tooltip("Drag your salonCamera here")]
     [SerializeField] CinemachineVirtualCamera salonCamera;
+
+    [Tooltip("Drag your roomCamera here")]
     [SerializeField] CinemachineVirtualCamera roomCamera;
 
     private CinemachineVirtualCamera activeCamera;
@@ -40,18 +43,19 @@ public class cameraManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update the Camera priority to set the new active camera
+    /// </summary>
+    /// <param name="newActiveCamera"></param>
     private void SetActiveCamera(CinemachineVirtualCamera newActiveCamera)
     {
-        // Disable the current active virtual camera
         if (activeCamera != null)
         {
-            activeCamera.gameObject.SetActive(false);
+            activeCamera.Priority = 10;
         }
 
-        // Enable the new active virtual camera
-        newActiveCamera.gameObject.SetActive(true);
+        newActiveCamera.Priority = 100;
 
-        // Update the activeCamera reference
         activeCamera = newActiveCamera;
     }
 }

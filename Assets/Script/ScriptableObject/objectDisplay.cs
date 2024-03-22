@@ -6,7 +6,7 @@ using DialogueEditor;
 public class ObjectDisplay : MonoBehaviour
 {
     public List<ObjectData> interactiveObject;
-    [SerializeField] GameObject dialog;
+    // [SerializeField] GameObject dialog;
 
     void Start()
 
@@ -41,9 +41,9 @@ public class ObjectDisplay : MonoBehaviour
             {
 
                 Debug.Log("Conversation started");
-                Debug.Log(objData);
+                Debug.Log(objData.name);
                 Debug.Log(objData.dialogue);
-                // ConversationManager.Instance.StartConversation(objData.dialogue);
+                ConversationManager.Instance.StartConversation(objData.dialogue);
 
             }
             else
