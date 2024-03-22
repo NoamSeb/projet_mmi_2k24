@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_Speed = 3.0f;
     [SerializeField] private float m_TurnSmoothTime = 0.1f;
     private Animator m_Animator;
+    private string collidedObject;
 
     private CharacterController m_Character;
     private float m_TurnSmoothVelocity;
@@ -86,8 +87,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.tag == "interactiv")
         {
-            // Debug.Log("Collision with: " + collider.gameObject);
-            m_InteractivObjects.TriggerDialog();
+            Debug.Log("Collision with: " + collider.gameObject.name);
+            collidedObject = collider.gameObject.name;
+            m_InteractivObjects.TriggerDialog(collidedObject);
         }
     }
 }

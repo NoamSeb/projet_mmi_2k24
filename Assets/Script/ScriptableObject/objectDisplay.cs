@@ -19,6 +19,7 @@ public class ObjectDisplay : MonoBehaviour
                 {
                     GameObject obj = Instantiate(interactivObject.interactivObject);
                     obj.tag = "interactiv";
+                    obj.name = interactivObject.ObjectName;
                 }
                 else
                 {
@@ -33,22 +34,15 @@ public class ObjectDisplay : MonoBehaviour
     }
 
     // If the object has a dialogue, start the conversation
-    public void TriggerDialog()
+    public void TriggerDialog(string obj)
     {
         foreach (ObjectData objData in interactiveObject)
         {
-            if (objData != null && objData.dialogue != null)
+            if (objData != null && objData.dialogue != null && objData.ObjectName == obj)
             {
-
-                Debug.Log("Conversation started");
-                Debug.Log(objData.name);
-                Debug.Log(objData.dialogue);
+                Debug.Log("Starting conversation with " + objData.ObjectName);
                 ConversationManager.Instance.StartConversation(objData.dialogue);
-
-            }
-            else
-            {
-                Debug.LogWarning("One of the interactiveObjects has a null or missing dialogue. No conversation started.");
+                return;
             }
         }
     }
