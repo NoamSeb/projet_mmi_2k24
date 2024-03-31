@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     private float m_TurnSmoothVelocity;
 
     private Vector2 m_MoveVector;
+    private bool m_Interact;
+
+    private bool m_Touched = false;
 
     [SerializeField] ObjectDisplay m_InteractivObjects;
 
@@ -52,6 +55,14 @@ public class PlayerController : MonoBehaviour
         m_MoveVector = context.ReadValue<Vector2>();
     }
 
+    public void ReadInteractInput(InputAction.CallbackContext context)
+    {
+        m_Interact = context.ReadValue<float>() > 0.1f;
+        if (m_Touched)
+        {
+            m_InteractivObjects.TriggerDialog(collidedObject);
+        }
+    }
     private void Move()
     {
         // Find the direction
@@ -83,13 +94,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "interactiv")
         {
-            Debug.Log("Collision with: " + collider.gameObject.name);
+            //Ajouter le text "Press InputAction.Value to interact"
             collidedObject = collider.gameObject.name;
-            m_InteractivObjects.TriggerDialog(collidedObject);
+            m_Touched = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider collider)
+    {
+        if (collider.gameObject.tag == "interactiv")
+        {
+            m_Touched = false;
         }
     }
 }

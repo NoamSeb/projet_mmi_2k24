@@ -40,7 +40,6 @@ public class ObjectDisplay : MonoBehaviour
         {
             if (objData != null && objData.dialogue != null && objData.ObjectName == obj)
             {
-                Debug.Log("Starting conversation with " + objData.ObjectName);
                 ConversationManager.Instance.StartConversation(objData.dialogue);
                 return;
             }
