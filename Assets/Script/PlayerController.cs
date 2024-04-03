@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_Speed = 3.0f;
     [SerializeField] private float m_TurnSmoothTime = 0.1f;
     private Animator m_Animator;
-    private string collidedObject;
+    private GameObject collidedObject;
+    private string collidedObjectName;
 
     private CharacterController m_Character;
     private float m_TurnSmoothVelocity;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool m_Touched = false;
 
     [SerializeField] ObjectDisplay m_InteractivObjects;
+    [SerializeField] GameObject m_interactionKey;
 
     #region Initialization
     private void OnEnable()
@@ -57,12 +59,27 @@ public class PlayerController : MonoBehaviour
 
     public void ReadInteractInput(InputAction.CallbackContext context)
     {
-        m_Interact = context.ReadValue<float>() > 0.1f;
-        if (m_Touched)
+        // Check if the interaction input has started (button pressed)
+        if (context.started)
         {
-            m_InteractivObjects.TriggerDialog(collidedObject);
+            m_Interact = true;
+
+            // Check if the player is near an interactive object and if so, trigger interaction
+            if (m_Touched)
+            {
+                m_interactionKey.SetActive(false);
+                m_InteractivObjects.TriggerDialog(collidedObjectName);
+                ScoreManager.Instance.AddScore();
+                collidedObject.tag = "Untagged";
+            }
+        }
+        // Check if the interaction input has been canceled (button released)
+        else if (context.canceled)
+        {
+            m_Interact = false;
         }
     }
+
     private void Move()
     {
         // Find the direction
@@ -99,8 +116,9 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.tag == "interactiv")
         {
-            //Ajouter le text "Press InputAction.Value to interact"
-            collidedObject = collider.gameObject.name;
+            m_interactionKey.SetActive(true);
+            collidedObject = collider.gameObject;
+            collidedObjectName = collider.gameObject.name;
             m_Touched = true;
         }
     }
@@ -110,6 +128,7 @@ public class PlayerController : MonoBehaviour
         if (collider.gameObject.tag == "interactiv")
         {
             m_Touched = false;
+            m_interactionKey.SetActive(false);
         }
     }
 }

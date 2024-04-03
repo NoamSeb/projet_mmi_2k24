@@ -39,6 +39,7 @@ public class TimeController : MonoBehaviour
     {
         if (m_remainingTime == 0)
         {
+            ScoreManager.Instance.Score = 0;
             SceneManager.LoadScene("game");
         }
     }

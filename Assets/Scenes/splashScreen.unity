@@ -630,10 +630,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1979383657}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7dec1e01224c4778a670bfae694de9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b07b79de0ba71400784b83c14ed091bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait_time: 5
+  wait_time: 9
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
